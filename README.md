@@ -86,4 +86,34 @@ AgentForge empowers you to build autonomous agents that handle tasks like sendin
 ### 🔑 Environment Variables
 Create `.env` files in `backend/` and `frontend/`:
 
-#### `backend/.env`
+#### `backend/.env` 
+
+
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/agentforge
+JWT_SECRET=your-secret-key-here
+TWILIO_SID=your-twilio-sid
+TWILIO_TOKEN=your-twilio-token
+TWILIO_NUMBER=your-twilio-number
+SLACK_TOKEN=your-slack-token
+STRIPE_SECRET_KEY=your-stripe-secret-key
+
+#### `frontend/.env`
+
+REACT_APP_API_URL=http://localhost:3000
+
+- Get API keys from [Twilio](https://www.twilio.com), [Slack](https://api.slack.com), and [Stripe](https://stripe.com).
+
+---
+
+## 🏗️ Local Setup
+
+### 🐳 Using Docker Compose
+1. **Clone the Repo**:
+   ```bash
+   git clone https://github.com/aki2025/agentforge.git
+   cd agentforge
+
+
+
+
