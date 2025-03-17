@@ -1,37 +1,28 @@
-require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
-const helmet = require('helmet');
-const winston = require('winston');
-const authRoutes = require('./routes/auth');
+const redis = require('redis');
+const { processTask } = require('./taskQueue');
 const agentRoutes = require('./routes/agents');
-const marketplaceRoutes = require('./routes/marketplace');
 
 const app = express();
-app.use(helmet());
+const redisClient = redis.createClient();
+
 app.use(express.json());
-
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
-  ],
-});
-
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => logger.error(err.message));
-
-app.use('/api/auth', authRoutes);
 app.use('/api/agents', agentRoutes);
-app.use('/api/marketplace', marketplaceRoutes);
 
-app.use((err, req, res, next) => {
-  logger.error(err.message);
-  res.status(500).send('Something broke!');
+app.get('/agents', async (req, res) => {
+  const cacheKey = 'agent_list';
+  const cached = await redisClient.get(cacheKey);
+  if (cached) {
+    return res.json(JSON.parse(cached));
+  }
+  const agents = [{ id: 1, name: 'Agent 1' }]; // Example data
+  await redisClient.setEx(cacheKey, 3600, JSON.stringify(agents));
+  res.json(agents);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
+app.post('/feedback', (req, res) => {
+  console.log(req.body); // Log feedback; store in DB if needed
+  res.send('Feedback received');
+});
+
+app.listen(process.env.PORT || 3000, () => console.log('Server running on port 3000'));

@@ -1,0 +1,8 @@
+{
+  "welcome": "Welcome to AgentForge",
+  "createAgent": "Create Agent",
+  "task": "Task",
+  "submit": "Submit",
+  "agentCreated": "Agent created successfully",
+  "error": "Failed to create agent"
+}

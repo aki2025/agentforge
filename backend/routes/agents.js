@@ -1,27 +1,17 @@
 const express = require('express');
-const router = express.Router();
 const Agent = require('../models/Agent');
-const authenticate = require('../auth');
-const { addTaskToQueue } = require('../taskQueue');
+const router = express.Router();
 
-router.post('/create', authenticate, async (req, res) => {
-  const { task, followUpTask } = req.body;
-  const agent = new Agent({
-    task,
-    followUpTask,
-    userId: req.user.id,
-    x: Math.random() * 10 - 5,
-    y: Math.random() * 10 - 5,
-    z: Math.random() * 10 - 5,
-  });
+router.post('/', async (req, res) => {
+  const { task, coordinates } = req.body;
+  const agent = new Agent({ task, coordinates });
   await agent.save();
-  await addTaskToQueue(agent._id, task);
   res.status(201).json(agent);
 });
 
-router.get('/', authenticate, async (req, res) => {
-  const agents = await Agent.find({ userId: req.user.id });
+router.get('/', async (req, res) => {
+  const agents = await Agent.find();
   res.json(agents);
 });
 
-module.exports = router; 
+module.exports = router;

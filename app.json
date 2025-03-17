@@ -1,13 +1,14 @@
 {
-  "name": "AgentForge",
-  "description": "A platform for creating autonomous agents",
-  "repository": "https://github.com/yourusername/agentforge",
+  "name": "agentforge",
+  "description": "Autonomous Agent Platform",
+  "repository": "https://github.com/aki2025/agentforge",
+  "keywords": ["agent", "automation", "nlp", "react"],
   "env": {
-    "MONGO_URI": { "description": "MongoDB connection string", "required": true },
-    "JWT_SECRET": { "description": "Secret key for JWT", "required": true },
-    "TWILIO_SID": { "description": "Twilio SID", "required": true },
-    "TWILIO_TOKEN": { "description": "Twilio Auth Token", "required": true },
-    "TWILIO_NUMBER": { "description": "Twilio Phone Number", "required": true }
-  },
-  "addons": ["mongolab", "heroku-redis"]
-} 
+    "MONGO_URI": {
+      "description": "MongoDB connection string"
+    },
+    "PORT": {
+      "value": "3000"
+    }
+  }
+}

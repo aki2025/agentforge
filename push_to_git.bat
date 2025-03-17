@@ -1,11 +1,6 @@
 @echo off
-echo Starting Git push process...
-cd /d "%~dp0"
-git init
+cd /d "C:\Users\Aakash Kaushal\Desktop\projects\agentforce\agentforge"
 git add .
-git commit -m "Initial commit of AgentForge project" || echo No new changes to commit
-git remote add origin https://github.com/aki2025/agentforge.git 2>nul
-if errorlevel 1 (echo Remote already exists, skipping...) else (echo Added remote repository)
-git push -u origin main
-echo Done!
+git commit -m "Update AgentForge"
+git push origin main
 pause

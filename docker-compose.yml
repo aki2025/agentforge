@@ -1,24 +1,18 @@
-version: '3'
+version: '3.8'
 services:
   backend:
     build: ./backend
     ports:
       - "3000:3000"
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/agentforge
-      - REDIS_HOST=redis
-    depends_on:
-      - mongo
-      - redis
+    env_file:
+      - backend/.env
   frontend:
     build: ./frontend
     ports:
       - "3001:3000"
+    env_file:
+      - frontend/.env
   mongo:
-    image: mongo
+    image: mongo:latest
     ports:
       - "27017:27017"
-  redis:
-    image: redis
-    ports:
-      - "6379:6379" 
