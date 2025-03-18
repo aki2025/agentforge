@@ -22,7 +22,7 @@ git commit -m "Initial commit of AgentForge project"
 
 :: Step 5: Set up the remote repository
 echo Setting up remote repository...
-git remote add origin https://github.com/aki2025/agentforge-new.git
+git remote add origin https://github.com/aki2025/Agentforge-new.git
 
 :: Step 6: Rename branch to main (if needed)
 echo Renaming branch to main...
@@ -34,5 +34,5 @@ git push -u origin main
 
 :: Inform user
 echo Project successfully pushed to GitHub!
-echo Visit your repository at https://github.com/aki2025/agentforge-new
+echo Visit your repository at https://github.com/aki2025/Agentforge-new
 pause
