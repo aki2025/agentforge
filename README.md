@@ -1,6 +1,5 @@
 # AgentForge - Autonomous Agent Platform
 
-![AgentForge Banner](https://via.placeholder.com/1200x400.png?text=AgentForge+Banner)  
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 [![GitHub Issues](https://img.shields.io/github/issues/aki2025/agentforge)](https://github.com/aki2025/agentforge/issues)  
 [![GitHub Stars](https://img.shields.io/github/stars/aki2025/agentforge)](https://github.com/aki2025/agentforge/stargazers)
